@@ -1,5 +1,6 @@
 from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import redirect, render
+from django.urls import reverse
 
 data = {
     "telefon":"telefon kategorisindeki ürünler listelendi",
@@ -21,8 +22,10 @@ def liste(request):
 def getProductsByCategoryId(request, category_id):
     category_list = list(data.keys())
     if category_id <= len(category_list) & category_id >= 0:
-        redirect_text = category_list[category_id - 1]
-        return redirect("/products/"+redirect_text)
+        category_name = category_list[category_id - 1]
+
+        redirect_path = reverse("products_by_category", args=[category_name])
+        return redirect(redirect_path )
     else:
         return HttpResponseNotFound("yanlış kategori seçimi yapıldı")
 
