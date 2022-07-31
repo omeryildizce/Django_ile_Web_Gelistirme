@@ -3,9 +3,9 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 
 data = {
-    "telefon":"telefon kategorisindeki ürünler listelendi",
-    "bilgisayar":"bilgisayar kategorisindeki ürünler listelendi",
-    "elektronik":"elektronik kategorisindeki ürünler listelendi"
+    "telefon":["samsung s20", "samsung s21"],
+    "bilgisayar":["laptop 1", "laptop 2"],
+    "elektronik":[ ], 
 }
 
 
@@ -36,10 +36,10 @@ def getProductsByCategoryId(request, category_id):
 
 def getProductsByCategory(request, category):
     try:
-        category_text = data[category]
+        products = data[category]
         return render(request,"myapp/products.html", {
             "category" :category,
-            "category_text": category_text,
+            "products": products,
         })
     except:
         return HttpResponseNotFound('<h1>yanlış kategori seçimi yapıldı</h1><a href="/products/">Anasayfa</a>')            
