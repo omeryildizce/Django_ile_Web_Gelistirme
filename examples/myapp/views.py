@@ -10,15 +10,12 @@ data = {
 
 
 def index(request):
-    list_items = ""
-    category_list = list(data.keys())
-    for category in category_list:
-        redirect_path = reverse("products_by_category", args=[category])
-
-        list_items+=f'<li><a href="/{redirect_path}/">{category}</a></li>'
-
-    html= f"<ul>{list_items}</ul>"
-    return render(request, "myapp/index.html")
+     
+    categories = list(data.keys())
+     
+    return render(request, "myapp/index.html", {
+        "categories" : categories,
+    })
 
 def details(request):
     return HttpResponse("details")
@@ -40,6 +37,9 @@ def getProductsByCategoryId(request, category_id):
 def getProductsByCategory(request, category):
     try:
         category_text = data[category]
-        return HttpResponse(f"<h1>{category_text}<h1>")
+        return render(request,"myapp/products.html", {
+            "category" :category,
+            "category_text": category_text,
+        })
     except:
         return HttpResponseNotFound('<h1>yanlış kategori seçimi yapıldı</h1><a href="/products/">Anasayfa</a>')            
