@@ -19,7 +19,8 @@ def getProductsByCategory(request, category):
     elif category == "telefon":
         category_text = "telefon kategorisindeki ürünler listelendi"
     else:
-        category_text = None
+        category_text = category + "  sayfası bulunamadı"
     return HttpResponse(category_text)
 
- 
+def getProductsByCategoryId(request, category):
+    return HttpResponse(category)

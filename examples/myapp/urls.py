@@ -6,5 +6,6 @@ urlpatterns = [
     path("index", views.index, name="index"),
     path("details", views.details, name="details"),
     path("list", views.liste, name="list "), 
-    path("<category>", views.getProductsByCategory),
+    path("<int:category>", views.getProductsByCategoryId),
+    path("<str:category>", views.getProductsByCategory),
 ]
