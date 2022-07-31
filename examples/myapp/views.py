@@ -1,4 +1,4 @@
-from django.http import HttpResponse
+from django.http import Http404, HttpResponse
 from django.shortcuts import render
 
 # Create your views here.
@@ -11,3 +11,15 @@ def details(request):
 
 def liste(request):
     return HttpResponse("list")
+
+def getProductsByCategory(request, category):
+    category_text = None
+    if category == "bilgisayar":
+        category_text = "bilgisayar kategorisindeki ürünler listelendi"
+    elif category == "telefon":
+        category_text = "telefon kategorisindeki ürünler listelendi"
+    else:
+        category_text = None
+    return HttpResponse(category_text)
+
+ 
