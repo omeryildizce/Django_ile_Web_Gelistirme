@@ -14,7 +14,7 @@ def index(request):
      
     categories = list(data.keys())
      
-    return render(request, "myapp/index.html", {
+    return render(request, "index.html", {
         "categories" : categories,
     })
 
@@ -38,7 +38,7 @@ def getProductsByCategoryId(request, category_id):
 def getProductsByCategory(request, category):
     try:
         products = data[category]
-        return render(request,"myapp/products.html", {
+        return render(request,"products.html", {
             "category" :category,
             "products": products,
             "now":datetime.datetime.now(),

@@ -1,4 +1,9 @@
 {% extends 'layout.html' %}
+{% load static %}
+
+{% block css_files %}
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+{% endblock css_files %}
 {% block page_title %}Ürünler{% endblock page_title %}
 {% block content %}
 <h1>Kategoriler</h1>
@@ -13,3 +18,6 @@
 </ul>
 {% endblock content %}
  
+{% block js_files  %}
+    <script src="{% static 'js/script.js' %}""></script>
+{% endblock js_files  %}
