@@ -6,16 +6,24 @@
 {% endblock css_files %}
 {% block page_title %}Ürünler{% endblock page_title %}
 {% block content %}
-<h1>Kategoriler</h1>
-<ul >
+
+
+<div class="container">
+    <h1>Kategoriler</h1>
+    <div class="row">
+        <div class="col">
+            {% for category in categories%}
     
-    {% for category in categories%}
-    <li>
-        <a href="{% url 'products_by_category' category%}">{{category|title}}</a>
-    </li>
+        <a class="btn btn-primary" href="{% url 'products_by_category' category%}">{{category|title}}</a>
+    
     {% endfor%}
+        </div>
+    </div>
+</div>
+ 
     
-</ul>
+    
+ 
 {% endblock content %}
  
 {% block js_files  %}

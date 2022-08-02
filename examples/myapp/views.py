@@ -4,7 +4,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse
 import datetime
 data = {
-    "telefon":["samsung s20", "samsung s21"],
+    "telefon":["samsung s20", "samsung s21","Iphone 12"],
     "bilgisayar":["laptop 1", "laptop 2"],
     "elektronik":[ ], 
 }
