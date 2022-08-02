@@ -1,7 +1,8 @@
+from datetime import datetime
 from django.http import Http404, HttpResponse, HttpResponseNotFound, HttpResponseRedirect
 from django.shortcuts import redirect, render
 from django.urls import reverse
-
+import datetime
 data = {
     "telefon":["samsung s20", "samsung s21"],
     "bilgisayar":["laptop 1", "laptop 2"],
@@ -40,6 +41,7 @@ def getProductsByCategory(request, category):
         return render(request,"myapp/products.html", {
             "category" :category,
             "products": products,
+            "now":datetime.datetime.now(),
         })
     except:
         return HttpResponseNotFound('<h1>yanlış kategori seçimi yapıldı</h1><a href="/products/">Anasayfa</a>')            
