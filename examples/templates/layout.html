@@ -7,6 +7,8 @@
     <title>{% block page_title %}Anasayfa{% endblock page_title %}</title>
 </head>
 <body>
+    {% include "partials/_header.html" %}
     {% block content %}{% endblock content %} 
+    {% include "partials/_footer.html" %}
 </body>
 </html>
