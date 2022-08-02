@@ -1,4 +1,10 @@
 {% extends 'movies/base.html' %}
+{% load static %}
+{% block css_files %}
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick.min.css' %}" />
+    <link rel="stylesheet" type="text/css" href="{% static 'vendor/slick/slick-theme.min.css' %}" />
+{% endblock css_files %}
+
 
 {% block page_title %}Anasayfa{% endblock page_title %}
 
