@@ -4,6 +4,8 @@ from django.utils.text import slugify
 class Category(models.Model):
     name = models.CharField(max_length=100)
 
+    def __str__(self):
+        return self.name
 
 # Create your models here.
 class Product(models.Model):
@@ -12,12 +14,13 @@ class Product(models.Model):
     description = models.CharField(max_length=200)
     imageUrl = models.CharField(max_length=50) 
     isActive = models.BooleanField(default=False)
-    category = models.ForeignKey(Category, on_delete= models.CASCADE, null=True)
-    slug = models.SlugField(default="",editable=False , blank=True ,null=False, db_index=True, unique=True)
-
-    def save(self, *args, **kargs):
-        self.slug = slugify(self.name)
-        super().save(args, kargs)
+   
+    slug = models.SlugField(default="",editable=True , blank=True ,null=False, db_index=True, unique=True)
+    categories = models.ManyToManyField(Category)
+    
 
     def __str__(self):
         return f"{self.name} {self.price} TL {self.slug}"
+
+
+
