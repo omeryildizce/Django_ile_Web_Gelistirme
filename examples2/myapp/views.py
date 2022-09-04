@@ -13,9 +13,9 @@ def index(request):
     return render(request, 'index.html', context)
 
 def list(request):
-    if request.GET['q'] and request.GET['q'] is not None:
-        q = request.GET['q']
-        products = Product.objects.filter(name__contains=q).order_by("-price")
+    if request.GET["q"] and request.GET["q"] is not None:
+        q = request.GET["q"]
+        products = Product.objects.filter(name__contains = q).order_by("-price")
     else:
         return HttpResponseRedirect("/products")
 
@@ -24,7 +24,7 @@ def list(request):
     }
 
     return render(request, 'list.html', context)
-
+ 
 def details(request, slug):
 
     product = get_object_or_404(Product, slug=slug)
