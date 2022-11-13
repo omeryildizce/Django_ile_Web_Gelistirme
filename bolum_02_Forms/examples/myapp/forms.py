@@ -15,7 +15,7 @@ from myapp.models import Product
 #         attrs={"class": "form-control"}))
 
 
-class ProductCrteateForm(forms.ModelForm):
+class ProductForm(forms.ModelForm):
     class Meta:
         model = Product
         fields = ("name", "price", "description", "slug")

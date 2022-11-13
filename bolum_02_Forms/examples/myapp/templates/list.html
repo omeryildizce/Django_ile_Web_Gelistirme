@@ -15,17 +15,12 @@
 <div class="container">
     <div class="row">
         <div class="col">
-          
             <ul>
                 {% for product in products %}
-                   
-                        <li>
-                            <a href={% url 'product_details' product.slug %}>
-                                {{ product.name }}
-                            </a>
-                            - {{ product.price }}
-                        </li>
-                  
+                        <li> {{ product.name }} - 
+                            {{ product.price }}
+                            <a href="{% url 'product_edit' product.id %}"  >Edit</a>   
+                        </li>  
                 {% endfor %}
             </ul>
            
