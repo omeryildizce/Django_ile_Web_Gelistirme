@@ -37,8 +37,8 @@ def create(request):
                         price=form.cleaned_data["price"], imageUrl=form.cleaned_data["imageUrl"], slug=form.cleaned_data["slug"])
             p.save()
             return HttpResponseRedirect("list")
-
-    form = ProductCrteateForm()
+    else:
+        form = ProductCrteateForm()
     return render(request, "create.html", {
         "form": form
     })
