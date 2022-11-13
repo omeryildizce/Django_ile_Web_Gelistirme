@@ -3,31 +3,59 @@
 {% load static %}
 
 {% block css_files %}
-    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+<link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 
 {% block page_title %}
-    create.html
+create.html
 {% endblock page_title %}
-   
+
 {% block content %}
 
 <div class="container">
     <div class="row">
-        <div class="col">  
+        <div class="col">
             <form action="create" method="post" novalidate>
                 {% csrf_token %}
-                {{form}}
+                <div class="mb-3 {% if form.product_name.errors%}invalid {% endif %}">
+                    {% if form.product_name.errors %}
+                        <div class="alert alert-danger">
+                            {{form.product_name.errors}}
+                        </div>
+                    {% endif %}
+                    <label class="form-label" for="{{form.product_name.id_for_label}}">Name</label>
+                    {{form.product_name}}
+                </div>
+                <div class="mb-3 {% if form.price.errors%}invalid {% endif %}">
+                    {{form.price.errors}}
+                    <label class="form-label" for="{{form.price.id_for_label}}">Price</label>
+                    {{form.price}}
+                </div>
+                <div class="mb-3 {% if form.description.errors%}invalid {% endif %}">
+                    {{form.description.errors}}
+                    <label class="form-label" for="{{form.description.id_for_label}}">Description</label>
+                    {{form.description}}
+                </div>
+                <div class="mb-3 {% if form.imageUrl.errors%}invalid {% endif %}">
+                    {{form.imageUrl.errors}}
+                    <label class="form-label" for="{{form.imageUrl.id_for_label}}">Image Url</label>
+                    {{form.imageUrl}}
+                </div>
+                <div class="mb-3 {% if form.slug.errors%}invalid {% endif %}">
+                    {{form.slug.errors}}
+                    <label class="form-label" for="{{form.slug.id_for_label}}">Slug</label>
+                    {{form.slug}}
+                </div>
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
     </div>
 </div>
-  
+
 
 {% endblock %}
 
 
 {% block js_files %}
-    <script src="{% static 'js/script.js' %}""></script>
+<script src="{% static 'js/script.js' %}""></script>
 {% endblock %}
