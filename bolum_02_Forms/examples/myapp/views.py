@@ -33,9 +33,7 @@ def create(request):
     if request.method == 'POST':
         form = ProductCrteateForm(request.POST)
         if form.is_valid():
-            p = Product(name=form.cleaned_data["product_name"], description=form.cleaned_data["description"],
-                        price=form.cleaned_data["price"], imageUrl=form.cleaned_data["imageUrl"], slug=form.cleaned_data["slug"])
-            p.save()
+            form.save()
             return HttpResponseRedirect("list")
     else:
         form = ProductCrteateForm()
