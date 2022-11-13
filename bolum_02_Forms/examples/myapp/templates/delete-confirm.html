@@ -15,12 +15,15 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <p><strong>{{product.name}}</strong> isimli ürünü silmek istediğinize emin misiniz?</p> 
-            <form action="{% url 'product_delete' product.id%}" method = "POST">
+           <p>
+            <strong>{{ product.name }}</strong> isimli ürünü silmek istediğinizden emin misiniz?
+            
+            <form action="{% url 'product_delete' product.id %}" method="POST">
                 {% csrf_token %}
                 <button type="submit" class="btn btn-danger">Evet</button>
-                <a href="{% url 'product_list'%}" class = "btn btn-primary">Hayır</a>
+                <a href="{% url 'product_list' %}" class="btn btn-primary">Hayır</a>
             </form>
+           </p>
         </div>
     </div>
 </div>

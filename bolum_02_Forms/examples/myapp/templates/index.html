@@ -15,23 +15,22 @@
 <div class="container">
     <div class="row">
         <div class="col">
-            <a href="create">Create Product</a>
-            <a href="list">Products</a>
+            <a href="create">create product</a>
+            <a href="list">products</a>
             <hr>
             <form action="list" method="GET">
                 Kelime : <input type="text" name="q">
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit">Submit</button>
             </form>
+            
             <ul>
                 {% for product in products %}
-                    {% if product.isActive %}
-                        <li>
-                            <a href={% url 'product_details' product.slug %}>
-                                {{ product.name }}
-                            </a>
-                            - {{ product.price }}
-                        </li>
-                    {% endif %}
+                    <li>
+                        <a href={% url 'product_details' product.slug %}>
+                            {{ product.name }}
+                        </a>
+                        - {{ product.price }}
+                    </li>
                 {% endfor %}
             </ul>
            

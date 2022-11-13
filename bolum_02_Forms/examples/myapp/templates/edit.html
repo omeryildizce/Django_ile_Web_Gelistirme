@@ -3,41 +3,48 @@
 {% load static %}
 
 {% block css_files %}
-<link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
 {% endblock %}
 
 {% block page_title %}
-edit.html
+    edit.html
 {% endblock page_title %}
-
+   
 {% block content %}
 
 <div class="container">
     <div class="row">
         <div class="col">
-            <form  method="post" novalidate>
+         
+           <form method="POST" novalidate enctype="multipart/form-data">
                 {% csrf_token %}
+
                 {% for field in form %}
-                    <div class="mb-3 {% if field.errors%}invalid {% endif %}">
+
+                    <div class="mb-3 {% if field.errors %} invalid {% endif %}">
                         {% if field.errors %}
                             <div class="alert alert-danger">
-                                {{field.errors}}
+                                {{ field.errors }}
                             </div>
                         {% endif %}
-                        <label class="form-label" for="{{field.id_for_label}}">{{field.label}}</label>
-                        {{field}}
+                        <label class="form-label" for="{{ field.id_for_label}}"> {{ field.label }} </label>
+                        {{ field }}
                     </div>
-                {% endfor %}  
+
+                {% endfor %}
+                
+
                 <button type="submit" class="btn btn-primary">Submit</button>
-            </form>
+           </form>           
+           
         </div>
     </div>
 </div>
-
+  
 
 {% endblock %}
 
 
 {% block js_files %}
-<script src="{% static 'js/script.js' %}""></script>
+    <script src="{% static 'js/script.js' %}""></script>
 {% endblock %}
