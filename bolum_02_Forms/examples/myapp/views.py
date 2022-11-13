@@ -2,15 +2,18 @@ from django.http.response import Http404, HttpResponseNotFound, HttpResponseRedi
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from .models import Product
+from .forms import ProductCrteateForm
+
 
 def index(request):
-    products = Product.objects.filter(isActive = True).order_by("-price")
+    products = Product.objects.filter(isActive=True).order_by("-price")
 
     context = {
         "products": products,
     }
 
     return render(request, 'index.html', context)
+
 
 def list(request):
     if "q" in request.GET and request.GET.get('q'):
@@ -24,17 +27,22 @@ def list(request):
     }
 
     return render(request, 'list.html', context)
+
+
 def create(request):
     if request.method == 'POST':
-        product_name = request.POST["product_name"]
-        price = request.POST["price"]
-        description = request.POST["description"]
-        image_name = request.POST["image_name"]
-        slug = request.POST["slug"]
-        p = Product(name = product_name, description = description, price = price, imageUrl = image_name, slug = slug)
-        p.save()
-        return HttpResponseRedirect("list") 
-    return render(request, "create.html")
+        form = ProductCrteateForm(request.POST)
+        if form.is_valid():
+            p = Product(name=form.cleaned_data["product_name"], description=form.cleaned_data["description"],
+                        price=form.cleaned_data["price"], imageUrl=form.cleaned_data["imageUrl"], slug=form.cleaned_data["slug"])
+            p.save()
+            return HttpResponseRedirect("list")
+
+    form = ProductCrteateForm()
+    return render(request, "create.html", {
+        "form": form
+    })
+
 
 def details(request, slug):
 
@@ -44,7 +52,3 @@ def details(request, slug):
         "product": product
     }
     return render(request, "details.html", context)
-
-
-
-
