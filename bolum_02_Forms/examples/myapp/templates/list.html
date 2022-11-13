@@ -19,7 +19,8 @@
                 {% for product in products %}
                         <li> {{ product.name }} - 
                             {{ product.price }}
-                            <a href="{% url 'product_edit' product.id %}"  >Edit</a>   
+                            <a href="{% url 'product_edit' product.id %}"  >Edit</a>  
+                            <a href="{% url 'product_delete' product.id %}"  >Delete</a>   
                         </li>  
                 {% endfor %}
             </ul>

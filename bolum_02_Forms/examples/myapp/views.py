@@ -55,6 +55,14 @@ def edit(request, id):
     return render(request, "edit.html", {
         "form":form
     })
+def delete(request, id):
+    product = get_object_or_404(Product,pk = id)
+    if request.method == "POST":
+        product.delete()
+        return redirect("product_list")
+    return render(request, "delete-confirm.html", {
+        "product":product
+    })
 def details(request, slug):
 
     product = get_object_or_404(Product, slug=slug)
