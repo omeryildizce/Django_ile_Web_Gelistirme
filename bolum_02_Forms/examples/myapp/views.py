@@ -2,7 +2,7 @@ from django.http.response import Http404, HttpResponseNotFound, HttpResponseRedi
 from django.shortcuts import get_object_or_404, redirect, render
 from django.urls import reverse
 from .models import Product
-from .forms import ProductForm
+from .forms import ProductForm, UploadForm
 import random
 import os
 
@@ -89,9 +89,14 @@ def handle_uploaded_file(file):
 
 
 def upload(request):
-    if request.method == "POST":
-        uploaded_images = request.FILES.getlist("images")
-        for file in uploaded_images:
-            handle_uploaded_file(file)
-        return render(request, "success.html")
-    return render(request, "upload.html")
+    if request.method == "POST" :
+        form = UploadForm(request.POST, request.FILES)
+        if form.is_valid():   
+            uploaded_image = request.FILES["image"]
+            handle_uploaded_file(uploaded_image)
+            return render(request, "success.html")
+    else:
+        form = UploadForm()
+    return render(request, "upload.html", {
+        "form":form
+    })
