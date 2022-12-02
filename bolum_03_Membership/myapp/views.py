@@ -16,6 +16,7 @@ def index(request):
 
 @login_required(login_url='/account/login')
 def list(request):
+
     if 'q' in request.GET and request.GET.get('q'):
         q = request.GET['q']
         products = Product.objects.filter(name__contains=q).order_by("-price")
@@ -27,6 +28,7 @@ def list(request):
     }
 
     return render(request, 'myapp/list.html', context)
+
 @login_required(login_url='/account/login')
 def create(request):
     if request.method == 'POST':
