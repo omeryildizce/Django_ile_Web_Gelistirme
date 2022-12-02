@@ -12,7 +12,11 @@ def login_request(request):
         user = authenticate(request, username=username, password=password)
         if user is not None:
             login(request, user)
-            return redirect("products")
+            next_url = request.GET.get('next',None)
+            if next_url is None:
+                return redirect("products")
+            else:
+                return redirect(next_url)
         else:
             return render(request, "account/login.html", {
                 "error": "Kullanıcı adı veya parola yanlış."

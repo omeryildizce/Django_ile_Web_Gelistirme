@@ -154,3 +154,4 @@ examples/myapp/static/images/1.jpeg
 examples/myapp/static/images/2.jpeg
 examples/myapp/static/images/3.jpeg
 examples/myapp/static/images/4.jpeg
+*.jpg
